@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./webfiles/css/style.css" rel=stylesheet>
+    <script src="./webfiles/JS/java.js"></script>
+    <link rel="icon" href="./scr/img/favicone.png"/>
+    <title>TP SQL N°2</title>
+</head>
+<body>
+    <!------------Debut Header------------>
+    <header>
+    <nav id='menu'>
+        <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
+        <ul>
+          <li><a href='index.html'>Accueil</a></li>
+          <li><a class='defilement'>TP</a>
+            <ul class='sous-menus'>
+              <li><a href='tpn3.html'>TP N°3</a></li>
+              <li><a href='tpn4.html'>TP N°4</a></li>
+              <li><a href='ping.html'>pingouin</a></li>
+            </ul>
+          </li>
+          <li><a href="#footer__bottom">Me contacter</a></li>
+        </ul>
+    </nav>
+    </header>
+    <!------------Fin Header------------>
+    <!------------Debut Main------------>
+    <main>
+        <div class="neonText">
+            <h1>TP N°2  Les Requêtes mono table</h1>
+        </div>
+<ul>
+    <div class="cadre">
+    <li class="tp2">1. Tous les types possibles de numéros de téléphone. (3 rows)<br>sjt=# SELECT DISTINCT TYP_CODE FROM T_TELEPHONE;</li>
+        <img src="scr/img/1.png" title="exercice 1" class="imgtp2">
+    </div>
+    <div class="cadre">
+        <li class="tp2">2. Les différents types de paiement possible. (3 rows)<br>sjt=# SELECT * FROM T_MODE_PAIEMENT;</li>
+        <img src="scr/img/2b.png" title="exercice 2" class="imgtp2">
+    </div>
+    <div class="cadre">
+        <li class="tp2">3. Les noms et prénoms de tous les clients. (100 rows)<br>sjt=# SELECT CLI_NOM, CLI_PRENOM FROM T_CLIENT;</li>
+        <img src="scr/img/3-1.png" title="exercice 3" class="imgtp2">
+        <img src="scr/img/3-2.png" title="exercice 3" class="imgtp2">
+    </div>
+    <div class="cadre">
+        <li class="tp2">4. Tous les numéros de téléphone dont le typ_code est GSM. (16 rows)<br>sjt=# SELECT TEL_NUMERO FROM T_TELEPHONE WHERE TYP_CODE = 'GSM';</li>
+        <img src="scr/img/4.png" title="exercice 4" class="imgtp2">
+    </div>
+    <div class="cadre">
+        <li class="tp2">5. Toutes les infos des factures ayant pour code de paiement CB. (651 rows)<br>sjt=# SELECT * FROM T_FACTURE WHERE PMT_CODE = 'CB';</li>
+        <img src="scr/img/5-1.png" title="exercice 5" class="imgtp2">
+        <img src="scr/img/5-2.png" title="exercice 5" class="imgtp2">
+    </div>
+    <div class="cadre">
+        <li class="tp2">6. Toutes les infos des chambres d’au moins 3 places. (10 rows)<br>sjt=# SELECT * FROM T_CHAMBRE WHERE CHB_COUCHAGE < 3;</li>
+        <img src="scr/img/6-1.png" title="exercice 6" class="imgtp2">
+    </div>
+    <div class="cadre">
+        <li class="tp2">7. Toutes les informations sur les réservations pour lesquelles au moins 3 personnes ont occupé une chambre. (2813 rows)<br>sjt=# SELECT * FROM TJ_CHB_PLN_CLI WHERE CHB_PLN_CLI_NB_PERS > 2;</li>
+        <img src="scr/img/7-1.png" title="exercice 7" class="imgtp2">
+        <img src="scr/img/7-2.png" title="exercice 7" class="imgtp2">
+    </div>
+    <div class="cadre">
+        <li class="tp2">8. Toutes les infos des chambres disposant d’une douche et une baignoire.(2 rows)<br>sjt=# SELECT * FROM T_CHAMBRE WHERE CHB_BAIN=1 AND CHB_DOUCHE = 1;</li>
+        <img src="scr/img/8-1.png" title="exercice 8" class="imgtp2">
+    </div>
+    <div class="cadre">
+        <li class="tp2">9. Toutes les informations des factures concernant le client numéro 5 triée par ordre croissant de date d'émission de la facture. (24 rows)<br>sjt=# SELECT * FROM T_FACTURE WHERE CLI_ID = 5 ORDER BY FAC_DATE ASC;</li>
+        <img src="scr/img/9-1.png" title="exercice 9" class="imgtp2">
+        <img src="scr/img/9-3.png" title="exercice 9" class="imgtp2">
+    </div>
+    <div class="cadre">
+        <li class="tp2">10. Toutes les factures émises en 2000 (voir fonction extract). (1186 rows)<br>sjt=# SELECT * FROM T_FACTURE WHERE EXTRACT (YEAR FROM FAC_DATE) = 2000;</li>
+        <img src="scr/img/10-1.png" title="exercice 10" class="imgtp2">
+        <img src="scr/img/10-2.png" title="exercice 10" class="imgtp2">
+    </div>
+    <div class="cadre">
+        <li class="tp2">11. Toutes les factures émises entre le 15/01/2000 et le 15/06/2000 (voir fonction to_date). (494 rows)<br>sjt=# SELECT * FROM T_FACTURE WHERE FAC_DATE BETWEEN '15/01/2000' AND '15/01/2000';</li>
+        <img src="scr/img/11-1.png" title="exercice 11" class="imgtp2">
+        <img src="scr/img/11-2.png" title="exercice 11" class="imgtp2">
+    </div>
+    <div class="cadre">
+        <li class="tp2">12. Les informations complètes des clients dont l’enseigne n’est pas renseignée. (81 rows)<br>sjt=# SELECT * FROM T_CLIENT WHERE CLI_ENSEIGNE IS NULL;</li>
+        <img src="scr/img/12-1.png" title="exercice 12" class="imgtp2">
+        <img src="scr/img/12-2.png" title="exercice 12" class="imgtp2">
+    </div>
+    <div class="cadre">
+        <li class="tp2">13. Les factures non réglées. (14 rows)<br>sjt=# SELECT * FROM T_FACTURE WHERE FAC_PMT_DATE IS NULL;</li>
+        <img src="scr/img/13.png" title="exercice 13" class="imgtp2">
+    </div>
+    <div class="cadre">
+        <li class="tp2">14. Les factures qui ont été réglées plus de 3 semaines après la date de facturation. (755 rows)<br>sjt=# SELECT * FROM T_FACTURE WHERE (FAC_PMT_DATE-FAC_DATE)>21;</li>
+        <img src="scr/img/14-1.png" title="exercice 14" class="imgtp2">
+        <img src="scr/img/14-2.png" title="exercice 14" class="imgtp2">
+    </div>
+    <div class="cadre">
+        <li class="tp2">15. Les factures qui ont été réglées avant la date de facturation. (4 rows)<br>sjt=# SELECT * FROM T_FACTURE WHERE FAC_PMT_DATE < FAC_DATE;</li>
+        <img src="scr/img/15.png" title="exercice 15" class="imgtp2">
+    </div>
+</ul>
+
+<div id="bouttons">
+    <button class="botboutton"> <span></span>
+        <span></span>
+        <span></span>
+        <span></span><a href='tpn3.html' class="link">TP N°3</a></button>
+    <button class="botboutton"> <span></span>
+        <span></span>
+        <span></span>
+        <span></span><a href='tpn4.html' class="link">TP N°4</a></button>
+    <button class="botboutton"> <span></span>
+        <span></span>
+        <span></span>
+        <span></span><a href='ping.html' class="link">pingouin</a></button>
+</div>        
+    </main>
+    <!------------Fin Main------------>
+    <!------------Debut Footer------------>
+    <footer class="footer">
+        <h6 class="footer__title">Me Contacter</h6>
+        <div class="footer__container">
+            <div class="footer__top">
+                <div class="footer_sociaux">
+                    <ul class="footer__list">
+                                <li class="footer__list-item">
+                                    <a href="https://www.facebook.com/profile.php?id=100076604238517" target="_blank"><img src="scr/img/facebook.png" title="facebook" alt="logo facebook cliquable" class="icone"></a>
+                                    </a>
+                                </li>
+                                <li class="footer__list-item">
+                                    <a href="https://www.instagram.com/eiko_v_vincent/" target="_blank"><img src="scr/img/instagram.png" title="instagram" alt="logo instagram cliquable" class="icone"></a>
+                                    </a>
+                                </li>
+                                <li class="footer__list-item">
+                                    <a href="https://www.youtube.com/channel/UCxKMaA_Q7hh46OzBWAOjWBA" target="_blank"><img src="scr/img/youtube.png" title="youtube" alt="logo youtube cliquable" class="icone"></a>
+                                    </a>
+                                </li>
+                                <li class="footer__list-item">
+                                    <a href="https://twitter.com/elonmusk" target="_blank"><img src="scr/img/twitter.png" title="twitter" alt="logo twitter cliquable" class="icone"></a>
+                                    </a>
+                                </li>
+                                <li class="footer__list-item">
+                                    <a href="https://www.linkedin.com/in/vincent-verhaeghe-8a5784221/" target="_blank"><img src="scr/img/linkedin.png" title="linkedin" alt="logo linkedin cliquable" class="icone"></a>
+                                    </a>
+                                </li>
+                                <li class="footer__list-item">
+                                    <a href="https://github.com/Eikoseijolo" target="_blank"><img src="scr/img/github.png" title="github" alt="logo github cliquable" class="icone"></a>
+                                    </a>
+                                </li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="footer__divider">
+
+            <div class="footer__bottom">
+                <span class="copyright">&copy; 2023 V Web Master Company. All rights reserved.</span>
+                
+            </div>
+        </div>
+    </footer>
+    <!------------Fin Footer------------>
+</body>
+</html>

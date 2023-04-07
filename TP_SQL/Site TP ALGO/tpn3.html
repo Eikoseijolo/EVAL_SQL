@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./webfiles/css/style.css" rel=stylesheet>
+    <script src="./webfiles/JS/java.js"></script>
+    <link rel="icon" href="./scr/img/favicone.png"/>
+    <title>TP SQL N°3</title>
+</head>
+<body>
+    <!------------Debut Header------------>
+    <header>
+    <nav id='menu'>
+        <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
+        <ul>
+          <li><a href='index.html'>Accueil</a></li>
+          <li><a class='defilement'>TP</a>
+            <ul class='sous-menus'>
+              <li><a href='tpn2.html'>TP N°2</a></li>
+              <li><a href='tpn4.html'>TP N°4</a></li>
+              <li><a href='ping.html'>pingouin</a></li>
+            </ul>
+          </li>
+          <li><a href="#footer__bottom">Me contacter</a></li>
+        </ul>
+    </nav>
+    </header>
+    <!------------Fin Header------------>
+    <!------------Debut Main------------>
+    <main>
+        <div class="neonText">
+        <h1>TP N°3 Les Requêtes statistiques mono table</h1>
+        </div>
+        <ul>
+            <div class="cadre">
+            <li class="tp2">1. Compter le nombre de chambres total.<br>
+                 -------<br>
+                 20<br>
+                 sjt=# SELECT COUNT (CHB_ID) FROM T_CHAMBRE;</li>
+                <img src="scr/img/TP3_1.png" title="exercice 1" class="imgtp2">
+            </div>
+            <div class="cadre">
+                <li class="tp2">2. Retrouver le prix maximal d’une chambre.<br>
+                    --------<br>
+                    512.00<br>
+                    sjt=# SELECT MAX (TRF_CHB_PRIX) FROM TJ_TRF_CHB;</li>
+                <img src="scr/img/TP3_2.png" title="exercice 2" class="imgtp2">
+            </div>
+            <div class="cadre">
+                <li class="tp2">3. Retrouver le nombre de places totales dans l'hôtel.<br>
+                    -----54<br>
+                    sjt=# SELECT SUM(CHB_COUCHAGE) FROM T_CHAMBRE;</li>
+                <img src="scr/img/TP3_3.png" title="exercice 3" class="imgtp2">
+            </div>
+            <div class="cadre">
+                <li class="tp2">4. Retrouver le prix moyen des chambres.<br>
+                    ----------------------<br>
+                    326.3700000000000000<br>
+                    sjt=# SELECT AVG (TRF_CHB_PRIX) FROM TJ_TRF_CHB;</li>
+                <img src="scr/img/TP3_4.png" title="exercice 4" class="imgtp2">
+            </div>
+            <div class="cadre">
+                <li class="tp2">5. Compter le nombre de clients dont l’enseigne est renseignée.<br>
+                    -------<br>
+                    19<br>
+                    sjt=# SELECT COUNT (CLI_ID) FROM T_CLIENT WHERE CLI_ENSEIGNE IS NOT NULL;</li>
+                <img src="scr/img/TP3_5.png" title="exercice 5" class="imgtp2">
+            </div>
+            <div class="cadre">
+                <li class="tp2">6. Retrouver le prix moyen des chambres durant la période du 15/01/2000 au 15/06/2000.<br>
+                    ⚠ Pas de jointure ici.<br>
+                    Ne retourne rien car il n’y a pas de chambres disponibles dans cet intervalle de dates.<br>
+                    sjt=# SELECT AVG (TRF_CHB_PRIX) FROM TJ_TRF_CHB WHERE TRF_DATE_DEBUT BETWEEN '15/01/2000' AND '15/06/2000';</li>
+                <img src="scr/img/TP3_6.png" title="exercice 6" class="imgtp2">
+            </div>
+            <div class="cadre">
+                <li class="tp2">7. Compter le nombre de clients par genre. (Nombre de M., de Mme. et de Melle. en une seule requête)<br>
+                    ---------+-------<br>
+                    M. | 83<br>
+                    Melle. | 2<br>
+                    Mme. | 15<br>
+                    (3 rows)<br>sjt=# SELECT TIT_CODE, COUNT (CLI_ID) FROM T_CLIENT GROUP BY TIT_CODE;</li>
+                <img src="scr/img/TP3_7.png" title="exercice 7" class="imgtp2">
+            </div>
+            <div class="cadre">
+                <li class="tp2">8. Compter le nombre de chambres par étage.<br>
+                    ----------+-------<br>
+                    RDC | 4<br>
+                    1er | 8<br>
+                    2e | 8<br>
+                    (3 rows)<br>sjt=# SELECT CHB_ETAGE, COUNT (CHB_ID) FROM T_CHAMBRE GROUP BY CHB_ETAGE;</li>
+                <img src="scr/img/TP3_8.png" title="exercice 8" class="imgtp2">
+            </div>
+            <div class="cadre">
+                <li class="tp2">9. Retrouver le nombre de places totales dans l'hôtel par étage.<br>
+                    ----------+-----<br>
+                    RDC | 9<br>
+                    1er | 23<br>
+                    2e | 22<br>
+                    (3 rows)<br>sjt=# SELECT CHB_ETAGE, SUM (CHB_COUCHAGE) FROM T_CHAMBRE GROUP BY CHB_ETAGE;</li>
+                <img src="scr/img/TP3_9.png" title="exercice 9" class="imgtp2">
+            </div>
+            <div class="cadre">
+                <li class="tp2">10. Retrouver le nombre de places totales dans l'hôtel par étage seulement si ce nombre est supérieur à 15.<br>
+                    ----------+-----<br>
+                    1er | 23<br>
+                    2e | 22<br>
+                    (2 rows)<br>sjt=# SELECT CHB_ETAGE, SUM (CHB_COUCHAGE) FROM T_CHAMBRE GROUP BY CHB_ETAGE HAVING SUM(CHB_COUCHAGE) >15;</li>
+                <img src="scr/img/TP3_10.png" title="exercice 10" class="imgtp2">
+            </div>
+        </ul>
+        <div id="bouttons">
+            <button class="botboutton"> <span></span>
+                <span></span>
+                <span></span>
+                <span></span><a href='tpn2.html' class="link">TP N°2</a></button>
+            <button class="botboutton"> <span></span>
+                <span></span>
+                <span></span>
+                <span></span><a href='tpn4.html' class="link">TP N°4</a></button>
+            <button class="botboutton"> <span></span>
+                <span></span>
+                <span></span>
+                <span></span><a href='ping.html' class="link">pingouin</a></button>
+        </div>
+    </main>
+    <!------------Fin Main------------>
+    <!------------Debut Footer------------>
+    <footer class="footer">
+        <h6 class="footer__title">Me Contacter</h6>
+        <div class="footer__container">
+            <div class="footer__top">
+                <div class="footer_sociaux">
+                    <ul class="footer__list">
+                                <li class="footer__list-item">
+                                    <a href="https://www.facebook.com/profile.php?id=100076604238517" target="_blank"><img src="scr/img/facebook.png" title="facebook" alt="logo facebook cliquable" class="icone"></a>
+                                    </a>
+                                </li>
+                                <li class="footer__list-item">
+                                    <a href="https://www.instagram.com/eiko_v_vincent/" target="_blank"><img src="scr/img/instagram.png" title="instagram" alt="logo instagram cliquable" class="icone"></a>
+                                    </a>
+                                </li>
+                                <li class="footer__list-item">
+                                    <a href="https://www.youtube.com/channel/UCxKMaA_Q7hh46OzBWAOjWBA" target="_blank"><img src="scr/img/youtube.png" title="youtube" alt="logo youtube cliquable" class="icone"></a>
+                                    </a>
+                                </li>
+                                <li class="footer__list-item">
+                                    <a href="https://twitter.com/elonmusk" target="_blank"><img src="scr/img/twitter.png" title="twitter" alt="logo twitter cliquable" class="icone"></a>
+                                    </a>
+                                </li>
+                                <li class="footer__list-item">
+                                    <a href="https://www.linkedin.com/in/vincent-verhaeghe-8a5784221/" target="_blank"><img src="scr/img/linkedin.png" title="linkedin" alt="logo linkedin cliquable" class="icone"></a>
+                                    </a>
+                                </li>
+                                <li class="footer__list-item">
+                                    <a href="https://github.com/Eikoseijolo" target="_blank"><img src="scr/img/github.png" title="github" alt="logo github cliquable" class="icone"></a>
+                                    </a>
+                                </li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="footer__divider">
+
+            <div class="footer__bottom">
+                <span class="copyright">&copy; 2023 V Web Master Company. All rights reserved.</span>
+                
+            </div>
+        </div>
+    </footer>
+    <!------------Fin Footer------------>
+</body>
+</html>

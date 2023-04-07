@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./webfiles/css/style.css" rel=stylesheet>
+    <script src="./webfiles/JS/java.js"></script>
+    <link rel="icon" href="./scr/img/favicone.png"/>
+    <title>TP SQL N°4</title>
+</head>
+<body>
+    <!------------Debut Header------------>
+    <header>
+    <nav id='menu'>
+        <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
+        <ul>
+          <li><a href='index.html'>Accueil</a></li>
+          <li><a class='defilement'>TP</a>
+            <ul class='sous-menus'>
+              <li><a href='tpn2.html'>TP N°2</a></li>
+              <li><a href='tpn3.html'>TP N°3</a></li>
+              <li><a href='ping.html'>pingouin</a></li>
+            </ul>
+          </li>
+          <li><a href="#footer__bottom">Me contacter</a></li>
+        </ul>
+    </nav>
+    </header>
+    <!------------Fin Header------------>
+    <!------------Debut Main------------>
+    <main>
+        <div class="neonText">
+        <h1>TP N°4 Requêtes simples et multi tables</h1>
+        </div>
+        <ul>
+            <div class="cadre">
+            <li class="tp2">1. Toutes les infos des clients qui habitent à Paris.<br>
+                (21 rows)<br>
+                sjt=# SELECT * FROM T_CLIENT INNER JOIN T_ADRESSE ON T_ADRESSE.CLI_ID = T_CLIENT.CLI_ID WHERE ADR_VILLE IN ('PARIS');
+            </li>
+                <img src="scr/img/tp4_1-1.png" title="exercice 1" class="imgtp2">
+            </div>
+            <div class="cadre">
+            <li class="tp2">2. les noms et prénoms des clients ayant une adresse mail se terminant par
+                “.net”.<br>
+                ---------------------------------+------------<br>
+                PIERROT | Robert<br>
+                ZAMPIERO | Annick<br>
+                RECHUL | Jacques<br>
+                LEI | Alain<br>
+                (4 rows)<br>
+                sjt=# SELECT CLI_NOM,CLI_PRENOM FROM T_CLIENT INNER JOIN T_EMAIL ON T_CLIENT.CLI_ID = T_EMAIL.CLI_ID WHERE T_EMAIL.EML_ADRESSE LIKE '%.net';
+            </li>
+                <img src="scr/img/tp4-2.png" title="exercice 2" class="imgtp2">
+            </div>
+            <div class="cadre">
+            <li class="tp2">3. Toutes les réservations (identifiant de la chambre, date de réservation et nombre de personnes) pour le client Olivier Orell durant le mois de Janvier de l'année 2000.<br>
+                -------+------------+---------------------<br>
+                12 | 2000-01-02 | 1<br>
+                16 | 2000-01-03 | 2<br>
+                9 | 2000-01-16 | 1<br>
+                8 | 2000-01-21 | 2<br>
+                16 | 2000-01-27 | 3<br>
+                (5 rows)<br>
+                sjt=# SELECT CHB_ID, PLN_JOUR, CHB_PLN_CLI_NB_PERS FROM TJ_CHB_PLN_CLI AS R INNER JOIN T_CLIENT AS C ON R.CLI_ID = C.CLI_ID WHERE C.CLI_NOM = 'ORELL' AND CLI_PRENOM = 'Olivier' AND R.PLN_JOUR BETWEEN TO_DATE ('2000-01-01','YYYY-MM-DD') AND TO_DATE ('2000-01-31','YYYY-MM-DD') ORDER BY R.PLN_JOUR ASC;<br>
+            </li>
+                <img src="scr/img/tp4-3.png" title="exercice 3" class="imgtp2">
+            </div>
+            <div class="cadre">
+                <li class="tp2">4.  Les dates d’émission des factures ayant bénéficié d’une remise (en montant ou pourcentage) triés dans l’ordre croissant.<br>
+                    ------------<br>
+                    1999-01-31<br>
+                    1999-02-28<br>
+                    2000-01-31<br>
+                    2000-02-29<br>
+                    2001-01-31<br>
+                    (5 rows)<br>
+                    sjt=# SELECT FAC_DATE FROM T_FACTURE INNER JOIN T_LIGNE_FACTURE ON T_FACTURE.FAC_ID=T_LIGNE_FACTURE.FAC_ID WHERE LIF_REMISE_MONTANT>0.0 GROUP BY FAC_DATE, LIF_REMISE_POURCENT, LIF_REMISE_MONTANT ORDER BY FAC_DATE;<br>
+                </li>
+                    <img src="scr/img/4-41.png" title="exercice 4" class="imgtp2">
+                </div>
+        </ul>
+        <div id="bouttons">
+            <button class="botboutton"> <span></span>
+                <span></span>
+                <span></span>
+                <span></span><a href='tpn2.html' class="link">TP N°2</a></button>
+            <button class="botboutton"> <span></span>
+                <span></span>
+                <span></span>
+                <span></span><a href='tpn3.html' class="link">TP N°3</a></button>
+            <button class="botboutton"> <span></span>
+                <span></span>
+                <span></span>
+                <span></span><a href='ping.html' class="link">pingouin</a></button>
+        </div>
+    </main>
+    <!------------Fin Main------------>
+    <!------------Debut Footer------------>
+    <footer class="footer">
+        <h6 class="footer__title">Me Contacter</h6>
+        <div class="footer__container">
+            <div class="footer__top">
+                <div class="footer_sociaux">
+                    <ul class="footer__list">
+                                <li class="footer__list-item">
+                                    <a href="https://www.facebook.com/profile.php?id=100076604238517" target="_blank"><img src="scr/img/facebook.png" title="facebook" alt="logo facebook cliquable" class="icone"></a>
+                                    </a>
+                                </li>
+                                <li class="footer__list-item">
+                                    <a href="https://www.instagram.com/eiko_v_vincent/" target="_blank"><img src="scr/img/instagram.png" title="instagram" alt="logo instagram cliquable" class="icone"></a>
+                                    </a>
+                                </li>
+                                <li class="footer__list-item">
+                                    <a href="https://www.youtube.com/channel/UCxKMaA_Q7hh46OzBWAOjWBA" target="_blank"><img src="scr/img/youtube.png" title="youtube" alt="logo youtube cliquable" class="icone"></a>
+                                    </a>
+                                </li>
+                                <li class="footer__list-item">
+                                    <a href="https://twitter.com/elonmusk" target="_blank"><img src="scr/img/twitter.png" title="twitter" alt="logo twitter cliquable" class="icone"></a>
+                                    </a>
+                                </li>
+                                <li class="footer__list-item">
+                                    <a href="https://www.linkedin.com/in/vincent-verhaeghe-8a5784221/" target="_blank"><img src="scr/img/linkedin.png" title="linkedin" alt="logo linkedin cliquable" class="icone"></a>
+                                    </a>
+                                </li>
+                                <li class="footer__list-item">
+                                    <a href="https://github.com/Eikoseijolo" target="_blank"><img src="scr/img/github.png" title="github" alt="logo github cliquable" class="icone"></a>
+                                    </a>
+                                </li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="footer__divider">
+
+            <div class="footer__bottom">
+                <span class="copyright">&copy; 2023 V Web Master Company. All rights reserved.</span>
+                
+            </div>
+        </div>
+    </footer>
+    <!------------Fin Footer------------>
+</body>
+</html>
